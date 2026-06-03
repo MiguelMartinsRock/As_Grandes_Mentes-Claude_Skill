@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>As Grandes Mentes — O conselho que você nunca teve acesso</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            amber: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; }
+    .amber-glow { box-shadow: 0 0 40px rgba(245, 158, 11, 0.15); }
+    .border-amber { border-color: #F59E0B; }
+    .text-amber { color: #F59E0B; }
+    .bg-amber { background-color: #F59E0B; }
+    .hover-amber:hover { background-color: #D97706; }
+    ::selection { background: #F59E0B; color: #000; }
+
+    /* HERO — entrada sequencial */
+    .hero-line {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: riseIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .hero-line:nth-child(1) { animation-delay: 0.1s; }
+    .hero-line:nth-child(2) { animation-delay: 0.25s; }
+    .hero-line:nth-child(3) { animation-delay: 0.4s; }
+    .hero-line:nth-child(4) { animation-delay: 0.55s; }
+    .hero-sub  { opacity: 0; animation: fadeIn 0.7s ease forwards; animation-delay: 0.85s; }
+    .hero-cta  { opacity: 0; animation: fadeIn 0.7s ease forwards; animation-delay: 1.05s; }
+    .hero-note { opacity: 0; animation: fadeIn 0.7s ease forwards; animation-delay: 1.2s; }
+    .hero-badge { opacity: 0; animation: fadeIn 0.5s ease forwards; animation-delay: 0s; }
+
+    @keyframes riseIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* SCROLL — fade + slide up */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* CTA PULSE */
+    .pulse-amber {
+      animation: pulseGlow 2.5s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0px rgba(245,158,11,0); }
+      50%       { box-shadow: 0 0 28px rgba(245,158,11,0.45); }
+    }
+
+    /* CARDS hover lift */
+    .card-hover {
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245,158,11,0.35);
+      box-shadow: 0 8px 32px rgba(245,158,11,0.08);
+    }
+
+    /* NÚMEROS counter */
+    .stat-num { display: inline-block; }
+
+    /* NAV slide down */
+    nav {
+      opacity: 0;
+      transform: translateY(-16px);
+      animation: navIn 0.5s ease forwards;
+      animation-delay: 0.05s;
+    }
+    @keyframes navIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* AMBIENT background glow */
+    .ambient {
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse at center, rgba(245,158,11,0.06) 0%, transparent 70%);
+      animation: ambientPulse 6s ease-in-out infinite;
+    }
+    @keyframes ambientPulse {
+      0%, 100% { opacity: 0.6; }
+      50%       { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- AMBIENT GLOW -->
+  <div class="ambient"></div>
+
+  <!-- NAV -->
+  <nav class="border-b border-zinc-900 px-6 py-4 flex justify-between items-center max-w-6xl mx-auto relative z-10">
+    <span class="font-black text-lg tracking-tight">Skill das <span class="text-amber">Grandes Mentes</span></span>
+    <a href="#oferta" class="text-sm font-semibold bg-amber text-black px-5 py-2 rounded-full hover-amber transition-colors">Quero acesso →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="max-w-4xl mx-auto px-6 pt-24 pb-20 text-center relative z-10">
+    <div class="hero-badge inline-block border border-zinc-800 text-zinc-400 text-xs font-medium px-4 py-1.5 rounded-full mb-10 tracking-widest uppercase">
+      Skill para Claude Code
+    </div>
+    <h1 class="font-black leading-none tracking-tight mb-10 flex flex-col items-center gap-1">
+      <span class="hero-line text-7xl md:text-9xl">150</span>
+      <span class="hero-line text-7xl md:text-9xl text-zinc-500">especialistas.</span>
+      <span class="hero-line text-7xl md:text-9xl text-amber">1</span>
+      <span class="hero-line text-7xl md:text-9xl text-zinc-500">comando.</span>
+    </h1>
+    <p class="hero-sub text-xl text-zinc-400 max-w-xl mx-auto leading-relaxed mb-10">
+      Você faz uma pergunta. A skill convoca os especialistas certos. Você decide com o melhor conselho do mundo.
+    </p>
+    <a href="#oferta" class="hero-cta pulse-amber inline-block bg-amber text-black font-black text-lg px-10 py-4 rounded-full hover-amber transition-colors">
+      Quero meu conselho particular →
+    </a>
+    <p class="hero-note text-zinc-600 text-sm mt-4">R$97 · Acesso imediato · Atualizações inclusas</p>
+  </section>
+
+  <!-- VÍDEO -->
+  <section class="border-t border-zinc-900 py-16 px-6 bg-zinc-950">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-center text-zinc-500 text-sm uppercase tracking-widest mb-6">Veja como funciona</p>
+      <div class="relative w-full rounded-2xl overflow-hidden border border-zinc-800" style="padding-top: 56.25%;">
+        <!-- Cole aqui o embed do seu vídeo (YouTube, Loom, Vimeo, etc.) -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 text-zinc-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mb-3 text-zinc-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-6.518-3.76A1 1 0 007 8.237v7.526a1 1 0 001.234.97l6.518-1.88A1 1 0 0016 13.9v-1.8a1 1 0 00-.748-.932z" />
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          </svg>
+          <p class="text-sm">Substitua por seu embed de vídeo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- NÚMEROS -->
+  <section class="border-t border-zinc-900 py-16 px-6">
+    <div class="max-w-4xl mx-auto grid grid-cols-3 gap-8 text-center">
+      <div class="reveal reveal-delay-1">
+        <p class="text-5xl font-black text-amber mb-2 stat-num" data-target="50">0</p>
+        <p class="text-zinc-400 text-sm">categorias de negócio digital</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="text-5xl font-black text-amber mb-2 stat-num" data-target="150">0</p>
+        <p class="text-zinc-400 text-sm">especialistas mapeados</p>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <p class="text-5xl font-black text-amber mb-2 stat-num" data-target="4">0</p>
+        <p class="text-zinc-400 text-sm">modos de abordagem por categoria</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMANDOS -->
+  <section class="border-t border-zinc-900 py-20 px-6 bg-zinc-950">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-zinc-500 text-sm uppercase tracking-widest mb-4 text-center">Como funciona</p>
+      <h2 class="text-3xl md:text-4xl font-black mb-12 text-center">4 comandos. Tudo o que você precisa.</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="reveal reveal-delay-1 card-hover border border-zinc-800 rounded-2xl p-6 amber-glow">
+          <span class="bg-amber text-black font-black text-sm px-3 py-1 rounded-lg inline-block mb-3">/instalar</span>
+          <p class="font-bold text-white mb-1">Configura o seu conselho</p>
+          <p class="text-zinc-500 text-sm">A skill aprende sobre o seu negócio e nunca mais esquece. Toda resposta já sabe quem você é.</p>
+        </div>
+
+        <div class="reveal reveal-delay-2 card-hover border border-zinc-800 rounded-2xl p-6">
+          <span class="border border-amber text-amber font-black text-xs px-3 py-1 rounded-lg inline-block mb-3">pergunte às grandes mentes</span>
+          <p class="font-bold text-white mb-1">O comando principal</p>
+          <p class="text-zinc-500 text-sm">Identifica a área, apresenta as abordagens, convoca os especialistas certos. Copy, oferta, IA, escala — o que for.</p>
+        </div>
+
+        <div class="reveal reveal-delay-3 card-hover border border-zinc-800 rounded-2xl p-6">
+          <span class="border border-zinc-700 text-zinc-300 font-black text-sm px-3 py-1 rounded-lg inline-block mb-3">/confronto</span>
+          <p class="font-bold text-white mb-1">Dois especialistas. Uma decisão.</p>
+          <p class="text-zinc-500 text-sm">Visões opostas debatem o seu dilema. Um árbitro resolve com recomendação clara.</p>
+        </div>
+
+        <div class="reveal reveal-delay-4 card-hover border border-zinc-800 rounded-2xl p-6">
+          <span class="border border-zinc-700 text-zinc-300 font-black text-sm px-3 py-1 rounded-lg inline-block mb-3">/auditoria</span>
+          <p class="font-bold text-white mb-1">Diagnóstico do seu negócio</p>
+          <p class="text-zinc-500 text-sm">Avalia 50 categorias, classifica pontos fortes e gargalos, entrega as 3 prioridades ranqueadas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section id="oferta" class="border-t border-zinc-900 py-20 px-6 bg-zinc-950">
+    <div class="max-w-2xl mx-auto text-center">
+      <p class="text-amber text-sm uppercase tracking-widest mb-4">Oferta de lançamento</p>
+      <h2 class="text-3xl md:text-4xl font-black mb-12">Tudo o que você recebe</h2>
+
+      <div class="border border-zinc-800 rounded-2xl p-8 text-left space-y-4 mb-8">
+        <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+          <div>
+            <p class="font-bold">As Grandes Mentes — Skill completa</p>
+            <p class="text-zinc-500 text-sm">50 categorias · 150 especialistas · 4 modos · 4 comandos</p>
+          </div>
+          <span class="text-zinc-500 text-sm line-through">R$297</span>
+        </div>
+        <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+          <div>
+            <p class="font-bold">PDF: Os 150 Especialistas</p>
+            <p class="text-zinc-500 text-sm">Resumo de cada especialista com o framework principal</p>
+          </div>
+          <span class="text-zinc-500 text-sm line-through">R$97</span>
+        </div>
+        <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+          <div>
+            <p class="font-bold">Biblioteca de 50 prompts prontos</p>
+            <p class="text-zinc-500 text-sm">Um prompt por categoria, já estruturado para ativar a skill</p>
+          </div>
+          <span class="text-zinc-500 text-sm line-through">R$67</span>
+        </div>
+        <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+          <div>
+            <p class="font-bold">Vídeo de instalação</p>
+            <p class="text-zinc-500 text-sm">Instale e configure em menos de 10 minutos</p>
+          </div>
+          <span class="text-zinc-500 text-sm line-through">R$47</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <div>
+            <p class="font-bold">Todas as atualizações futuras</p>
+            <p class="text-zinc-500 text-sm">Novos especialistas e categorias entram automaticamente</p>
+          </div>
+          <span class="text-zinc-500 text-sm line-through">R$147</span>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <span class="text-zinc-500 text-sm">Valor total: <span class="line-through">R$655</span></span>
+      </div>
+      <div class="mb-8">
+        <span class="text-zinc-400 text-sm">Primeiras 50 cópias por apenas</span>
+        <p class="text-6xl font-black text-amber">R$97</p>
+        <p class="text-zinc-500 text-sm mt-1">Após as 50 cópias, o preço vai para R$297</p>
+      </div>
+
+      <a href="SEU_LINK_KIRVANO_AQUI" class="block w-full bg-amber text-black font-black text-xl py-5 rounded-2xl hover-amber transition-colors text-center mb-4">
+        Quero as Grandes Mentes por R$97 →
+      </a>
+      <p class="text-zinc-600 text-sm">Acesso imediato após o pagamento</p>
+
+      <!-- GARANTIA -->
+      <div class="mt-10 border border-zinc-800 rounded-2xl p-6">
+        <p class="font-bold text-white mb-2">🛡️ Garantia de 30 dias</p>
+        <p class="text-zinc-400 text-sm leading-relaxed">Use por 30 dias. Se você não tomar uma decisão melhor do que tomaria sozinho, me manda mensagem e devolvo tudo. Sem perguntas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-t border-zinc-900 py-20 px-6">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl font-black mb-12 text-center">Perguntas frequentes</h2>
+      <div class="space-y-6">
+
+        <div class="border-b border-zinc-900 pb-6">
+          <p class="font-bold mb-2">Preciso saber programar para usar?</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Não. A instalação é copiar um arquivo para uma pasta e adicionar duas linhas de texto. O vídeo de instalação te guia em menos de 10 minutos.</p>
+        </div>
+
+        <div class="border-b border-zinc-900 pb-6">
+          <p class="font-bold mb-2">Precisa do Claude Code pago?</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Sim. As Grandes Mentes é uma skill para o Claude Code, que requer assinatura da Anthropic. O Claude Code custa a partir de $20/mês.</p>
+        </div>
+
+        <div class="border-b border-zinc-900 pb-6">
+          <p class="font-bold mb-2">Como recebo o produto?</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Imediatamente após o pagamento. Você recebe o arquivo da skill, o PDF dos especialistas, a biblioteca de prompts e o link para o vídeo de instalação.</p>
+        </div>
+
+        <div class="border-b border-zinc-900 pb-6">
+          <p class="font-bold mb-2">As atualizações são pagas?</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Não. Toda vez que novos especialistas ou categorias forem adicionados, você recebe automaticamente. Você compra uma vez e o produto cresce com você.</p>
+        </div>
+
+        <div>
+          <p class="font-bold mb-2">Funciona para qualquer tipo de negócio digital?</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Sim. As 50 categorias cobrem desde solopreneurs e criadores até agências e SaaS. O /instalar configura a skill para o seu contexto específico logo no primeiro uso.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="border-t border-zinc-900 py-20 px-6 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black mb-4">
+        Tome a melhor decisão<br />do seu negócio.<br /><span class="text-amber">Agora.</span>
+      </h2>
+      <p class="text-zinc-400 mb-10">150 especialistas. 1 comando. Menos de 5 minutos.</p>
+      <a href="SEU_LINK_KIRVANO_AQUI" class="inline-block bg-amber text-black font-black text-xl px-12 py-5 rounded-2xl hover-amber transition-colors">
+        Quero as Grandes Mentes por R$97 →
+      </a>
+      <p class="text-zinc-600 text-sm mt-4">Primeiras 50 cópias · Garantia de 30 dias</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-zinc-900 py-8 px-6 text-center text-zinc-600 text-sm reveal">
+    <p>As Grandes Mentes · Gautier IA · Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    // SCROLL REVEAL
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // COUNTER ANIMATION
+    function animateCounter(el, target, duration = 1200) {
+      let start = 0;
+      const step = target / (duration / 16);
+      const interval = setInterval(() => {
+        start += step;
+        if (start >= target) { el.textContent = target; clearInterval(interval); return; }
+        el.textContent = Math.floor(start);
+      }, 16);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          animateCounter(el, target);
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-num').forEach(el => statObserver.observe(el));
+
+    // OFFER ITEMS STAGGER
+    document.querySelectorAll('#oferta .border-b, #oferta .flex.justify-between').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = `${i * 0.08}s`;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
