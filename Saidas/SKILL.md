@@ -24,6 +24,7 @@ Esta skill usa três arquivos que devem estar na mesma pasta:
 | `pergunte às grandes mentes` | Ativa o fluxo principal com os 50 especialistas |
 | `/confronto` | Dois especialistas com visões opostas debatem sua decisão |
 | `/auditoria` | Diagnóstico completo: avalia as 50 categorias e aponta gargalos |
+| `/resume` | Resume a última resposta longa em bullets diretos e plano de ação simplificado |
 
 ---
 
@@ -242,6 +243,30 @@ Ao final, exiba a oferta de salvamento padrão.
 
 ---
 
+## COMANDO: /resume
+
+Quando o usuário digitar `/resume`, releia a última resposta da skill e comprima em formato direto:
+
+```
+**Resumo rápido:**
+- [insight principal 1]
+- [insight principal 2]
+- [insight principal 3]
+(máximo 5 bullets, só o que muda alguma coisa)
+
+**Ação imediata:**
+1. [passo 1]
+2. [passo 2]
+3. [passo 3]
+```
+
+Regras do `/resume`:
+- Sem repetir contexto, sem headers desnecessários, sem introdução
+- Linguagem direta: cada bullet deve ser acionável ou revelador
+- Se o usuário não pediu salvamento ainda, ofereça ao final
+
+---
+
 ## REGRAS GERAIS DO SISTEMA
 
 1. **`CONTEXTO.md` é obrigatório** — se não existir, instrua o usuário a rodar `/instalar` antes de qualquer comando
@@ -251,6 +276,7 @@ Ao final, exiba a oferta de salvamento padrão.
 5. **Salvamento sempre oferecido** — ao final de toda resposta, sem exceção
 6. **`HISTORICO.md` nunca é sobrescrito** — sempre append (adicionar ao final)
 7. **`CONTEXTO.md` pode ser atualizado** — se o usuário disser que algo mudou no negócio, atualize o arquivo
+8. **Sem travessão em textos para copiar** — ao gerar qualquer texto para o usuário usar diretamente (copy, post, mensagem, pitch, email, legenda, script), nunca use travessão (-) no meio da frase. Substitua por ponto, vírgula ou reescreva. Travessão dá cara de IA e quebra a naturalidade do texto
 
 ---
 
@@ -1250,6 +1276,7 @@ Depois que o usuário escolher o modo, use esta estrutura:
 4. **Convoque apenas os especialistas do modo escolhido** — não misture especialistas de outros modos
 5. **Nunca cite um nome sem aplicar o framework** — "X diria Y" sem o raciocínio é inútil
 6. **Sempre termine com ação** — 3 passos concretos, nunca teoria sem destino
+7. **Sem travessão em textos para copiar** — ao gerar copy, post, mensagem, email, pitch ou qualquer texto que o usuário usará diretamente, nunca use travessão (-). Use ponto, vírgula ou reescreva a frase. Travessão dá cara de IA
 
 ---
 

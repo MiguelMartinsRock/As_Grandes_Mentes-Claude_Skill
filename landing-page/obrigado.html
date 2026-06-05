@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bem-vindo às Grandes Mentes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            amber: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; }
+    ::selection { background: #F59E0B; color: #000; }
+
+    .text-amber { color: #F59E0B; }
+    .bg-amber { background-color: #F59E0B; }
+    .hover-amber:hover { background-color: #D97706; }
+    .border-amber { border-color: #F59E0B; }
+
+    /* AMBIENT */
+    .ambient {
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse at center, rgba(245,158,11,0.07) 0%, transparent 70%);
+      animation: ambientPulse 6s ease-in-out infinite;
+    }
+    @keyframes ambientPulse {
+      0%, 100% { opacity: 0.6; }
+      50%       { opacity: 1; }
+    }
+
+    /* NAV */
+    nav {
+      opacity: 0;
+      transform: translateY(-16px);
+      animation: navIn 0.5s ease forwards;
+      animation-delay: 0.05s;
+    }
+    @keyframes navIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ENTRADA SEQUENCIAL */
+    .enter { opacity: 0; transform: translateY(28px); animation: riseIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .enter-1 { animation-delay: 0.2s; }
+    .enter-2 { animation-delay: 0.38s; }
+    .enter-3 { animation-delay: 0.54s; }
+    .enter-4 { animation-delay: 0.7s; }
+    .enter-5 { animation-delay: 0.86s; }
+    .enter-6 { animation-delay: 1.0s; }
+
+    @keyframes riseIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* PULSE no botão de download */
+    .pulse-amber { animation: pulseGlow 2.5s ease-in-out infinite; }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0px rgba(245,158,11,0); }
+      50%       { box-shadow: 0 0 28px rgba(245,158,11,0.5); }
+    }
+
+    /* STEPS */
+    .step-card {
+      transition: border-color 0.25s ease;
+    }
+    .step-card:hover {
+      border-color: rgba(245,158,11,0.3);
+    }
+
+    /* GLOW no ícone de check */
+    .check-glow {
+      box-shadow: 0 0 0 6px rgba(245,158,11,0.08), 0 0 24px rgba(245,158,11,0.12);
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <div class="ambient"></div>
+
+  <!-- NAV -->
+  <nav class="border-b border-zinc-900 px-6 py-4 flex justify-between items-center max-w-6xl mx-auto relative z-10">
+    <span class="font-black text-lg tracking-tight">Skill das <span class="text-amber">Grandes Mentes</span></span>
+    <span class="text-sm text-zinc-500 font-medium">Acesso confirmado</span>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="relative z-10 max-w-2xl mx-auto px-6 pt-20 pb-32 text-center">
+
+    <!-- Ícone de confirmação -->
+    <div class="enter enter-1 flex justify-center mb-8">
+      <div class="w-16 h-16 rounded-full bg-amber flex items-center justify-center check-glow">
+        <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Título -->
+    <h1 class="enter enter-2 font-black text-4xl md:text-5xl tracking-tight leading-tight mb-4">
+      Bem-vindo às<br><span class="text-amber">Grandes Mentes.</span>
+    </h1>
+
+    <!-- Subtítulo -->
+    <p class="enter enter-3 text-zinc-400 text-lg leading-relaxed mb-12 max-w-lg mx-auto">
+      Seu acesso está confirmado. Baixe os arquivos e siga os passos abaixo para ativar o conselho no seu Claude.
+    </p>
+
+    <!-- Botão de download -->
+    <div class="enter enter-4 mb-16">
+      <a
+        href="SEU_LINK_DRIVE_AQUI"
+        class="inline-flex items-center gap-3 bg-amber text-black font-black text-lg px-8 py-4 rounded-full hover-amber transition-colors pulse-amber"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Baixar os arquivos
+      </a>
+      <p class="text-zinc-600 text-sm mt-3">Arquivo .zip · 3 arquivos · instalação em 5 minutos</p>
+    </div>
+
+    <!-- Divisor -->
+    <div class="enter enter-4 w-px h-12 bg-zinc-800 mx-auto mb-16"></div>
+
+    <!-- Passos -->
+    <div class="enter enter-5 text-left space-y-4 mb-16">
+
+      <p class="text-zinc-500 text-xs font-semibold tracking-widest uppercase text-center mb-6">Como instalar</p>
+
+      <div class="step-card flex gap-4 border border-zinc-900 rounded-2xl p-5 bg-zinc-950">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center text-amber font-black text-sm">1</div>
+        <div>
+          <p class="font-semibold text-white text-sm mb-1">Extraia o ZIP</p>
+          <p class="text-zinc-500 text-sm leading-relaxed">Descompacte e coloque os 3 arquivos em uma pasta no seu computador. Exemplo: <span class="text-zinc-400 font-mono text-xs">Documentos/Claude Skills/Grandes Mentes/</span></p>
+        </div>
+      </div>
+
+      <div class="step-card flex gap-4 border border-zinc-900 rounded-2xl p-5 bg-zinc-950">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center text-amber font-black text-sm">2</div>
+        <div>
+          <p class="font-semibold text-white text-sm mb-1">Referencie no CLAUDE.md</p>
+          <p class="text-zinc-500 text-sm leading-relaxed">Abra o arquivo <span class="text-zinc-400 font-mono text-xs">~/.claude/CLAUDE.md</span> e adicione o caminho do SKILL.md. O vídeo mostra exatamente como fazer isso.</p>
+        </div>
+      </div>
+
+      <div class="step-card flex gap-4 border border-zinc-900 rounded-2xl p-5 bg-zinc-950">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center text-amber font-black text-sm">3</div>
+        <div>
+          <p class="font-semibold text-white text-sm mb-1">Rode o <span class="font-mono">/instalar</span></p>
+          <p class="text-zinc-500 text-sm leading-relaxed">Abra o Claude Code, digite <span class="text-zinc-400 font-mono text-xs">/instalar</span> e responda 6 perguntas sobre o seu negócio. Pronto.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Vídeo de instalação -->
+    <div class="enter enter-6 border border-zinc-900 rounded-2xl p-6 bg-zinc-950 text-left">
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-amber/10 border border-amber/20 flex items-center justify-center">
+          <svg class="w-5 h-5 text-amber" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold text-white text-sm mb-1">Vídeo de instalação</p>
+          <p class="text-zinc-500 text-sm leading-relaxed mb-4">Assista antes de instalar. Em menos de 15 minutos o conselho estará ativo no seu Claude.</p>
+          <a
+            href="SEU_LINK_VIDEO_AQUI"
+            class="inline-flex items-center gap-2 text-amber font-semibold text-sm hover:text-amber-400 transition-colors"
+          >
+            Assistir agora
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-zinc-900 py-8 text-center">
+    <p class="text-zinc-600 text-sm">
+      Dúvidas? Fale com a gente em <a href="mailto:SEU_EMAIL_AQUI" class="text-zinc-400 hover:text-amber transition-colors">SEU_EMAIL_AQUI</a>
+    </p>
+  </footer>
+
+</body>
+</html>
